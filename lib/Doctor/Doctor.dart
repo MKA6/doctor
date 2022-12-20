@@ -19,27 +19,33 @@ class Doctor extends StatelessWidget {
           backgroundColor: const Color(0xff54C0FF),
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(92.r),
-            child: AppBar(
-              elevation: 0.0.r,
-              backgroundColor: const Color(0xff54C0FF),
-              title: Padding(
-                padding: EdgeInsetsDirectional.only(start: 27.r, top: 37.r),
-                child: Text('Doctor'),
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: 27.r,
-                    end: 15.r,
+            child: Stack(
+              alignment: AlignmentDirectional.topEnd,
+              children: [
+                AppBar(
+                  elevation: 0.0.r,
+                  backgroundColor: const Color(0xff54C0FF),
+                  title: Padding(
+                    padding: EdgeInsetsDirectional.only(start: 27.r, top: 37.r),
+                    child: Text('Doctor'),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsetsDirectional.only(
+                    top: 48.h,
+                    end: 20.w,
                   ),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return Search();
-                      }));
+                      // Navigator.of(context)
+                      //     .push(MaterialPageRoute(builder: (context) {
+                      //   return Search();
+                      // }));
                     },
-                    icon: const Icon(Icons.location_pin),
+                    icon: const Icon(
+                      Icons.location_pin,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -107,7 +113,8 @@ class Doctor extends StatelessWidget {
                                   height: 20.h,
                                   child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: provider.userDoctorCategory!.length,
+                                    itemCount:
+                                        provider.userDoctorCategory!.length,
                                     //widget.doctors.length
                                     itemBuilder: (context, index) {
                                       return ChooseCategory(
@@ -135,8 +142,9 @@ class Doctor extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: provider.userDoctorCategory!.length,
                         itemBuilder: (context, index) {
-                          return ContactDoctor(provider
-                              .userDoctorCategory![index],); //widget.doctors[index]
+                          return ContactDoctor(
+                            provider.userDoctorCategory![index],
+                          ); //widget.doctors[index]
                         },
                         separatorBuilder: (context, index) => SizedBox(
                           width: 20.w,
@@ -170,8 +178,9 @@ class Doctor extends StatelessWidget {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: provider.userDoctorCategory!.length,
                               itemBuilder: (context, index) {
-                                return DoctorPopular(provider.userDoctorCategory![
-                                    index]); //widget.doctors[index]
+                                return DoctorPopular(
+                                    provider.userDoctorCategory![
+                                        index]); //widget.doctors[index]
                               },
                               separatorBuilder: (context, index) => SizedBox(
                                 height: 10.h,

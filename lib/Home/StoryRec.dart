@@ -84,8 +84,7 @@ class StoryRec extends StatelessWidget {
                                             // );
                                           },
                                           child: RatingBar.builder(
-                                            initialRating: 2,//double.parse('${categoryDoctor.Rating!}'),
-                                            // حسب تقييم المستخدم
+                                            initialRating: double.parse(categoryDoctor.Rating!),
                                             minRating: 1,
                                             itemSize: 12,
                                             direction: Axis.horizontal,
@@ -100,8 +99,7 @@ class StoryRec extends StatelessWidget {
                                               color: Colors.amber,
                                             ),
                                             onRatingUpdate: (rating) {
-                                              print(
-                                                  rating); // ودي التقيم هاد على البروفايل
+                                              print(rating); // ودي التقيم هاد على البروفايل
                                             },
                                           ),
                                         ),

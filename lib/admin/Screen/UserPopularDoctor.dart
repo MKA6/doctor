@@ -30,7 +30,7 @@ class UserPopularDoctor extends StatelessWidget {
               Provider.of<AdminProvider>(context, listen: false)
                   .getAllActivitiesDoctor(userDoctorCategory.id!);
               AppRouter.navigateToScreen(
-                  DisplayAllActivitiesDoctor(userDoctorCategory.id!));
+                  DisplayAllActivitiesDoctor(userDoctorCategory.id! , userDoctorCategory));
             },
             child: Container(
               width: 150.w,

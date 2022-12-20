@@ -33,6 +33,13 @@ class FirestoreHelper {
         .doc(appUser.id)
         .update(appUser.toMap());
   }
+/// ///////////////////////////
+  RRRR(UserDoctorCategory userDoc) async {
+    await firebaseFirestore
+        .collection('categories')
+        .doc(userDoc.id)
+        .set(userDoc.toMap());
+  }
 
   ///  admin functions
 
@@ -55,6 +62,7 @@ class FirestoreHelper {
     return category;
   }
 
+
   Future<List<UserDoctorCategory>> getAllUserCategory1() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await firebaseFirestore.collection('UserDoctor').get();
@@ -63,7 +71,7 @@ class FirestoreHelper {
       cat.id = e.id;
       return cat;
     }).toList();
-    log(category1.length.toString());
+    //log(category1.length.toString());
     return category1;
   }
 
@@ -82,7 +90,7 @@ class FirestoreHelper {
   }
   updateUserRating(CategoryDoctor categoryDoctor) async {
     await firebaseFirestore
-        .collection('UserDoctor')
+        .collection('categories')
         .doc(categoryDoctor.id)
         .update(categoryDoctor.toMap());
   }

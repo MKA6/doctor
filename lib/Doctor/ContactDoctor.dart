@@ -17,15 +17,8 @@ class ContactDoctor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //double rating = double.parse(userDoctorCategory.Rating!);   // خطا هين
-
-    // final Uri _url = Uri.parse('https://flutter.dev');
-    // Future<void> _launchUrl() async {
-    //   if (!await launchUrl(_url)) {
-    //     throw 'Could not launch $_url';
-    //   }
-    // }
-
+    // double rating = double.parse(userDoctorCategory.Rating ?? '0');
+int f = 1;
     return ScreenUtilInit(
       builder: (BuildContext context, Widget? child) {
         return Consumer<AdminProvider>(builder: (context, provider, _) {
@@ -196,9 +189,7 @@ class ContactDoctor extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 RatingBar.builder(
-                                  //initialRating: rating ,
-                                  initialRating: 3 ,
-                                  /// بدنا نعمل هين تحديث زي ما عملنا في التعديل على بيانات اليوزر
+                                  initialRating: 2.5 ,
                                   minRating: 1,
                                   itemSize: 12,
                                   direction: Axis.horizontal,
@@ -210,8 +201,8 @@ class ContactDoctor extends StatelessWidget {
                                     Icons.star,
                                     color: Colors.amber,
                                   ),
-                                  onRatingUpdate: (rating) {
-                                    rating; // ودي التقيم هاد على البروفايل
+                                  onRatingUpdate: (ratin) {
+                                    ratin;
                                   },
                                 ),
                               ],

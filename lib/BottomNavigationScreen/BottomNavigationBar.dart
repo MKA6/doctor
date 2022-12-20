@@ -14,7 +14,7 @@ class BottoNavigationScreen extends StatefulWidget {
 }
 
 class _HomeState extends State<BottoNavigationScreen> {
-  //int index = 0;
+  int index = 0;
   List<Widget> pages = [
     Home(),
     Doctor(),
@@ -73,8 +73,7 @@ class _HomeState extends State<BottoNavigationScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset(
-                'images/Search@3x.png',
+              icon: Icon(Icons.fmd_good,
                 color: Provider.of<AdminProvider>(context, listen: false).bnbindex == 2
                     ? const Color(0xff0093FF)
                     : Colors.grey,

@@ -18,7 +18,6 @@ class AddNewActivitiesDoctor extends StatelessWidget {
           appBar: AppBar(
             title: Text('Add Activities Doctor'),
           ),
-          backgroundColor: Colors.blue,
           body: SingleChildScrollView(
             child: Form(
               key: produactKey,

@@ -7,9 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class PersonalProfile extends StatelessWidget {
-  // UserDoctorCategory userDoctorCategory;
-  // PersonalProfile(this.userDoctorCategory);
-
+  int  id;
+  PersonalProfile(this.id);
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -19,27 +18,21 @@ class PersonalProfile extends StatelessWidget {
             return Row(
               children: [
                 Expanded(
-                  child:
-                  Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CircleAvatar(
                         radius: 50.r,
                         backgroundImage: NetworkImage(
-                          //userDoctorCategory.imageUrl ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BKO2XDG9XrOr7w1MmVOm54oWonC-JB0jvg&usqp=CAU',
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BKO2XDG9XrOr7w1MmVOm54oWonC-JB0jvg&usqp=CAU',
-                          // categoryDoctor.imageUrl!,
-                          // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.imageUrl!,
+                          provider.userDoctorCategory?[id].imageUrl ??
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BKO2XDG9XrOr7w1MmVOm54oWonC-JB0jvg&usqp=CAU',
                         ),
                       ),
                       SizedBox(
                         height: 15.h,
                       ),
                       Text(
-                        // userDoctorCategory.name ?? 'Christine Jones',
-                        'Christine Jones',
-                        // categoryDoctor.name!,
-                        // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.name!,
+                        provider.userDoctorCategory?[id].name ?? 'Mohammed',
                         style: TextStyle(
                           fontSize: 12.sp,
                           color: Color(0xff3B3A43),
@@ -49,10 +42,8 @@ class PersonalProfile extends StatelessWidget {
                         height: 2.h,
                       ),
                       Text(
-                        // userDoctorCategory.specialization ?? 'Dentist',
-                        'Dentist',
-                        // categoryDoctor.specialization!,
-                        // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.specialization!,
+                        provider.userDoctorCategory?[id].specialization ??
+                            'Heart',
                         style: TextStyle(
                           fontSize: 10.sp,
                           color: Color(0xffA9B8C1),
@@ -79,10 +70,8 @@ class PersonalProfile extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                           // userDoctorCategory.email ?? 'john@gmail.com',
-                            'john@gmail.com',
-                            // categoryDoctor.email!,
-                            // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.email!,
+                            provider.userDoctorCategory?[id].email ??
+                                'mmm@gmail.com',
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: Color(0xffA9B8C1),
@@ -104,10 +93,8 @@ class PersonalProfile extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                            // userDoctorCategory.phone ?? '+01 111 222 333',
-                            '+01 111 222 333',
-                            // categoryDoctor.phone!,
-                            // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.phone!,
+                            provider.userDoctorCategory?[id].phone ??
+                                '+01 111 222 333',
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: Color(0xffA9B8C1),
@@ -129,10 +116,8 @@ class PersonalProfile extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                            // userDoctorCategory.location ?? 'New York City',
-                            'New York City',
-                            // categoryDoctor.location!,
-                            // Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.location!,
+                            provider.userDoctorCategory?[id].location ??
+                                'New York City',
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: Color(0xffA9B8C1),
@@ -151,10 +136,8 @@ class PersonalProfile extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                            ' 4.5',
-                            //userDoctorCategory.Rating!,// ?? ,
-                            //  categoryDoctor.Rating!,
-                            //  Provider.of<AdminProvider>(context , listen: false).categoryDoctor!.Rating!,
+                            '3.4',
+                            //provider.userDoctorCategory?[int.parse(id)].Rating ?? '3.4',
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: Color(0xffA9B8C1),

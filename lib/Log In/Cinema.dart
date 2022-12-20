@@ -17,21 +17,17 @@ class Cinema extends StatefulWidget {
             'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. '
             'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
     Slide(
-        image: 'images/employee1.jpg',
-        title: 'Mohammed AlMasrei',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. '
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+      image: 'images/Prof-H.jpg',
+      title: 'Jurgen Harms',
+      description:
+          'Professor Harms unus est peritior spina chirurgi mundi. Per 10,000 chirurgiae spinae tractato, Professor Harms chirurgicam experientiam praestantem habet',
+    ),
     Slide(
-        image: 'images/employee3.jpg',
-        title: 'Easy to Check Up',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. '
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+      image: 'images/Dr-Roehl.jpg',
+      title: 'Henningus Rohl',
+      description:
+          'Specialista in medicina articulari artificiali, reposito et recognitione artuum artificialium, correctione deformitatum, Mannheim, Germania',
+    ),
   ];
 
   @override
@@ -105,7 +101,9 @@ class _CinemaState extends State<Cinema> {
                     itemBuilder: (_, index) => Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 30.r,),
+                          margin: EdgeInsets.symmetric(
+                            vertical: 30.r,
+                          ),
                           child: Stack(
                             alignment: AlignmentDirectional.center,
                             children: [

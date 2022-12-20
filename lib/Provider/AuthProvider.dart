@@ -4,6 +4,7 @@ import 'package:doctor/BottomNavigationScreen/BottomNavigationBar.dart';
 import 'package:doctor/Helper/AuthHelper.dart';
 import 'package:doctor/Helper/FirestoreHelper.dart';
 import 'package:doctor/Helper/StoragHelper.dart';
+import 'package:doctor/Log%20In/Cinema.dart';
 import 'package:doctor/Log%20In/SignUp.dart';
 import 'package:doctor/Log%20In/signIn.dart';
 import 'package:doctor/Models/AppUser.dart';
@@ -28,7 +29,7 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController initialRating = TextEditingController();
 
   TextEditingController profileUserNameController = TextEditingController();
-  TextEditingController profilePhoneController = TextEditingController();
+  TextEditingController profileUserPhoneController = TextEditingController();
 
   AppUser? loggedAppUser;
   late User loggedUser;
@@ -46,8 +47,8 @@ class AuthProvider extends ChangeNotifier {
     loggedAppUser =
         await FirestoreHelper.firestoreHelper.getUserFromFirestore(id);
     loggedAppUser!.id = id;
-    profileUserNameController.text = loggedAppUser!.name! ?? '';
-    profilePhoneController.text = loggedAppUser!.phoneNumber! ?? '';
+    profileUserNameController.text = loggedAppUser!.name ?? '';
+    profileUserPhoneController.text = loggedAppUser!.phoneNumber ?? '';
     notifyListeners();
   }
 
@@ -60,8 +61,8 @@ class AuthProvider extends ChangeNotifier {
       AppUser appUser = AppUser(
         loggedUser.uid,
         signUpNameController.text,
-        signUpPhoneNumberController.text,
         loggedUser.email,
+        signUpPhoneNumberController.text,
       );
       FirestoreHelper.firestoreHelper.createNewUser(appUser);
       AppRouter.navigateAndReplaceScreen(BottoNavigationScreen()); //Cinema()
@@ -74,6 +75,7 @@ class AuthProvider extends ChangeNotifier {
 
   checkUser() async {
     await Future.delayed(Duration(seconds: 3));
+   // AppRouter.navigateAndReplaceScreen(Cinema());
     User? user = AuthHelper.authHelper.checkUser();
     if (user == null) {
       /// navigation to auth screen
@@ -106,9 +108,11 @@ class AuthProvider extends ChangeNotifier {
 
   updateUserInfo() async {
     loggedAppUser!.name = profileUserNameController.text;
-    loggedAppUser!.phoneNumber = profilePhoneController.text;
+    loggedAppUser!.phoneNumber = profileUserPhoneController.text;
     FirestoreHelper.firestoreHelper.updateUserInfo(loggedAppUser!);
     getUserFromFirestore(loggedAppUser!.id!);
     AppRouter.shoeCustomDialog('Data has been modified');
   }
+
+
 }

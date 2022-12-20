@@ -1,7 +1,9 @@
 import 'package:doctor/Helper/FirestoreHelper.dart';
+import 'package:doctor/Provider/AdminProvider/AdminProvider.dart';
 import 'package:doctor/Widgets/BottomSheet/doctorEvaluation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 class AppRouter {
   static GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -70,7 +72,6 @@ class AppRouter {
                     children: [
                       RatingBar.builder(
                         initialRating: Rating,
-                        // حسب تقييم المستخدم
                         minRating: 1,
                         itemSize: 30,
                         direction: Axis.horizontal,
@@ -83,7 +84,8 @@ class AppRouter {
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
-                          Rating = rating; // ودي التقيم هاد على البروفايل
+                          Rating = rating;
+                          // ودي التقيم هاد على البروفايل
                         },
                       ),
                       SizedBox(
@@ -97,9 +99,6 @@ class AppRouter {
                             color: Colors.black,
                             fontSize: 20,
                           ),
-                          // helperText: 'Gmail is required',
-                          // errorBorder: InputBorder.none,
-                          // border: ,
                           enabled: true,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -108,7 +107,7 @@ class AppRouter {
                                 width: .8),
                           ),
                         ),
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         cursorColor: Colors.black,
                       ),
                       SizedBox(
@@ -124,8 +123,9 @@ class AppRouter {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
+                            Provider.of<AdminProvider>(context , listen: false).updateUserRating();
                             // FirestoreHelper.firestoreHelper.updateUserRating(!);
-                            navKey.currentState!.pop();
+                            //navKey.currentState!.pop();
                           },
                           child: Text(
                             'Rating',

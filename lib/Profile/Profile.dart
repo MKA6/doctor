@@ -1,3 +1,4 @@
+import 'package:doctor/AppRouter/AppRouter.dart';
 import 'package:doctor/BottomNavigationScreen/BottomNavigationBar.dart';
 import 'package:doctor/Helper/FirestoreHelper.dart';
 import 'package:doctor/Profile/PersonalProfile.dart';
@@ -5,6 +6,7 @@ import 'package:doctor/Profile/TextProfile.dart';
 import 'package:doctor/Provider/AdminProvider/AdminProvider.dart';
 import 'package:doctor/Provider/AuthProvider.dart';
 import 'package:doctor/Search/Search.dart';
+import 'package:doctor/admin/Screen/DisplayAllUserDoctor.dart';
 import 'package:doctor/admin/models/UserDoctorCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +44,7 @@ class Profile extends StatelessWidget {
                       ),
                       child: PopupMenuButton(
                           padding: EdgeInsets.zero,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.more_vert_rounded,
                             color: Colors.white,
                             size: 30,
@@ -52,13 +54,29 @@ class Profile extends StatelessWidget {
                               PopupMenuItem<int>(
                                 value: 0,
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Log Out",
                                     ),
                                     Spacer(),
                                     Icon(
                                       Icons.logout,
+                                      size: 30,
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem<int>(
+                                value: 1,
+                                child: Row(
+                                  children: const [
+                                    Text(
+                                      "Add User Doctor",
+                                    ),
+                                    Spacer(),
+                                    Icon(
+                                      Icons.add,
                                       size: 30,
                                       color: Colors.black,
                                     ),
@@ -89,13 +107,16 @@ class Profile extends StatelessWidget {
                             if (value == 0) {
                               Provider.of<AuthProvider>(context, listen: false)
                                   .signOut();
-                              Provider.of<AuthProvider>(context, listen: false)
-                                  .loginEmailController
-                                  .clear();
-                              Provider.of<AuthProvider>(context, listen: false)
-                                  .loginPasswordController
-                                  .clear();
-                            } //else if (value == 1) {}
+                              // Provider.of<AuthProvider>(context, listen: false)
+                              //     .loginEmailController
+                              //     .clear();
+                              // Provider.of<AuthProvider>(context, listen: false)
+                              //     .loginPasswordController
+                              //     .clear();
+                            } else if (value == 1) {
+                              AppRouter.navigateToScreen(
+                                  DisplayAllUserDoctor());
+                            }
                           }),
                     ),
                   ],
@@ -119,7 +140,7 @@ class Profile extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      PersonalProfile(),
+                      PersonalProfile(0), ///
                       SizedBox(
                         height: 15.h,
                       ),
@@ -130,7 +151,7 @@ class Profile extends StatelessWidget {
                       SizedBox(
                         height: 15.h,
                       ),
-                      TextProfile(),
+                      TextProfile(0), ///
                     ],
                   ),
                 ),

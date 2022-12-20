@@ -22,6 +22,7 @@ class AdminProvider extends ChangeNotifier {
 
   AdminProvider() {
    getAllUserCategory();
+
     getAllCategory();
   }
 
@@ -29,7 +30,6 @@ class AdminProvider extends ChangeNotifier {
 
   setBnbIndex(int index) async {
     bnbindex = index;
-    // getAllUserCategory();
     notifyListeners();
   }
 
@@ -104,7 +104,7 @@ class AdminProvider extends ChangeNotifier {
     if (pickedImage != null) {
       AppRouter.showLoaderDialog();
       String imageUrl = await StoragHelper.storagHelper
-          .uploadImage("User-Category_Images", pickedImage!);
+          .uploadImage("UserCategory_Images", pickedImage!);
       UserDoctorCategory category = UserDoctorCategory(
         imageUrl: imageUrl,
         name: catNameController.text,
@@ -121,7 +121,7 @@ class AdminProvider extends ChangeNotifier {
       category.id = id;
       userDoctorCategory!.add(category);
 
-      imageUrl.isNotEmpty == null;
+      imageUrl == null;
       catNameController.clear();
       catSpecializationController.clear();
       catLcationController.clear();
@@ -138,7 +138,6 @@ class AdminProvider extends ChangeNotifier {
   getAllUserCategory() async {
     userDoctorCategory =
         await FirestoreHelper.firestoreHelper.getAllUserCategory1();
-    log('List userDoctorCategory ${userDoctorCategory?.length}');
     notifyListeners();
   }
 

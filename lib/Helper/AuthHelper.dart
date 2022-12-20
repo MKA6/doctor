@@ -55,5 +55,6 @@ class AuthHelper {
 
   User? checkUser() {
     return firebaseAuth.currentUser;
+
   }
 }

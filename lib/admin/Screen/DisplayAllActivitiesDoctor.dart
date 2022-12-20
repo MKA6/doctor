@@ -2,6 +2,7 @@ import 'package:doctor/AppRouter/AppRouter.dart';
 import 'package:doctor/Helper/FirestoreHelper.dart';
 import 'package:doctor/Provider/AdminProvider/AdminProvider.dart';
 import 'package:doctor/admin/Screen/AddNewActivitiesDoctor.dart';
+import 'package:doctor/admin/models/UserDoctorCategory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +10,9 @@ import 'package:provider/provider.dart';
 
 class DisplayAllActivitiesDoctor extends StatelessWidget {
   String catId;
+  UserDoctorCategory userDoctorCategory;
 
-  DisplayAllActivitiesDoctor(this.catId);
+  DisplayAllActivitiesDoctor(this.catId , this.userDoctorCategory);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class DisplayAllActivitiesDoctor extends StatelessWidget {
           builder: (context, provider, _) {
             return Scaffold(
                 appBar: AppBar(
-                  title: Text('Display All Activities'),
+                  title: Text(userDoctorCategory.name!),
                   actions: [
                     Padding(
                       padding: const EdgeInsetsDirectional.only(
@@ -66,23 +68,23 @@ class DisplayAllActivitiesDoctor extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Container(
-                                    alignment: AlignmentDirectional.topEnd,
-                                    margin: EdgeInsetsDirectional.only(
-                                      top: 15.h,
-                                      end: 10.w,
-                                    ),
-                                    child: InkWell(
-                                      child: const CircleAvatar(
-                                        backgroundColor: Colors.grey,
-                                        radius: 20,
-                                        child: Icon(Icons.delete , size: 30,),
-                                      ),
-                                      onTap: () {
-                                      // FirestoreHelper.firestoreHelper.deleteCategory(catId);
-                                      },
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   alignment: AlignmentDirectional.topEnd,
+                                  //   margin: EdgeInsetsDirectional.only(
+                                  //     top: 15.h,
+                                  //     end: 10.w,
+                                  //   ),
+                                  //   child: InkWell(
+                                  //     child: const CircleAvatar(
+                                  //       backgroundColor: Colors.grey,
+                                  //       radius: 20,
+                                  //       child: Icon(Icons.delete , size: 30,),
+                                  //     ),
+                                  //     onTap: () {
+                                  //     // FirestoreHelper.firestoreHelper.deleteCategory(catId);
+                                  //     },
+                                  //   ),
+                                  // ),
                                   // Container(
                                   //   alignment: AlignmentDirectional.topEnd,
                                   //   margin: EdgeInsetsDirectional.only(

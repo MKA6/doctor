@@ -41,33 +41,35 @@ class Home extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    provider.categories == null
+                     provider.categories == null
                         ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        child: CircularProgressIndicator(),
+                        )
                         : Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 20.r,
-                              horizontal: 27.r,
-                            ),
-                            child: Container(
-                              width: 320.w,
-                              height: 40.h,
-                              padding: EdgeInsetsDirectional.all(
-                                10.r,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadiusDirectional.all(
-                                  Radius.circular(5.r),
-                                ),
-                                color: Colors.white,
-                              ),
-                              child: CustomScarch(),
-                            ),
-                          ),
+                        padding: EdgeInsets.symmetric(
+                        vertical: 20.r,
+                        horizontal: 27.r,
+                        ),
+                        child: Container(
+                        width: 320.w,
+                        height: 40.h,
+                        padding: EdgeInsetsDirectional.all(
+                        10.r,
+                        ),
+                        decoration: BoxDecoration(
+                        borderRadius: BorderRadiusDirectional.all(
+                        Radius.circular(5.r),
+                        ),
+                        color: Colors.white,
+                        ),
+                        child: CustomScarch(),
+                        ),
+                        ),
+
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 27.0.r,
+                        // vertical: 20.r
                       ),
                       child: Row(
                         children: [
@@ -122,15 +124,15 @@ class Home extends StatelessWidget {
                                   color: Color(0xff3B3A43),
                                 ),
                               ),
-                              Spacer(),
-                              ElevatedButton(
-                                child: Icon(Icons.add),
-                                onPressed: () {
-                                  // provider.getAllUserCategory();
-                                  AppRouter.navigateToScreen(
-                                      DisplayAllUserDoctor());
-                                },
-                              )
+                              // Spacer(),
+                              // ElevatedButton(
+                              //   child: Icon(Icons.add),
+                              //   onPressed: () {
+                              //     // provider.getAllUserCategory();
+                              //     AppRouter.navigateToScreen(
+                              //         DisplayAllUserDoctor());
+                              //   },
+                              // )
                             ],
                           ),
                           SizedBox(
@@ -153,8 +155,15 @@ class Home extends StatelessWidget {
                                     crossAxisSpacing: 20.w,
                                   ),
                                   itemBuilder: (context, index) {
-                                    return HomePopularDoctor(
-                                      provider.userDoctorCategory![index],
+                                    return InkWell(
+                                      onTap: () {
+                                        // UserDoctorCategory u = provider.userDoctorCategory![index];
+                                        provider.setBnbIndex(3);
+                                        provider.getAllUserCategory();
+                                      },
+                                      child: HomePopularDoctor(
+                                        provider.userDoctorCategory![index],
+                                      ),
                                     );
                                   },
                                 ),

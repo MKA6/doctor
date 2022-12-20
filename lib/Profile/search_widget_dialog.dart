@@ -31,113 +31,104 @@ class SearchWidgetDialog extends StatelessWidget {
                   // alignment: Alignment.topCenter,
                   child: Consumer<AuthProvider>(
                     builder: (context, provider, _) {
-                      return provider.loggedAppUser == null
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Stack(
-                              alignment: AlignmentDirectional.topEnd,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        provider.updateUserImage();
-                                      },
-                                      child: provider.loggedAppUser!.imagUrl ==
-                                              0
-                                          ? const Center(
-                                              child: CircularProgressIndicator(
-                                                color: Colors.white,
+                      return Stack(
+                        alignment: AlignmentDirectional.topEnd,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  provider.updateUserImage();
+                                },
+                                child: provider.loggedAppUser == null
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : Container(
+                                        width: 90.w,
+                                        height: 82.h,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadiusDirectional.circular(
+                                                  100.r),
+                                          color: Colors.black38,
+                                        ),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: provider
+                                                    .loggedAppUser!.imagUrl ==
+                                                null
+                                            ? Image.asset('images/profile.png')
+                                            : CircleAvatar(
+                                                radius: 60,
+                                                child: Image.network(
+                                                  provider.loggedAppUser!
+                                                          .imagUrl ??
+                                                      'images/profile.png',
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
-                                            )
-                                          : Container(
-                                              width: 90.w,
-                                              height: 82.h,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(100.r),
-                                                color: Colors.black38,
-                                              ),
-                                              clipBehavior:
-                                                  Clip.antiAliasWithSaveLayer,
-                                              child: provider.loggedAppUser!
-                                                          .imagUrl ==
-                                                      null
-                                                  ? const Icon(
-                                                      Icons.camera_alt,
-                                                      color: Colors.white,
-                                                    )
-                                                  : CircleAvatar(
-                                                      radius: 60,
-                                                      child: Image.network(
-                                                        provider.loggedAppUser!
-                                                            .imagUrl!,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                            ),
+                                      ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Email ',
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                     ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Email ',
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20.w,
-                                        ),
-                                        Text(
-                                          provider.loggedAppUser!.email!,
-                                          style: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    CustomProfileItem(
-                                      "Name ",
-                                      provider.loggedAppUser!.name!,
-                                      provider.profileUserNameController,
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    CustomProfileItem(
-                                      "Telephone ",
-                                      provider.loggedAppUser!.phoneNumber!,
-                                      provider.profilePhoneController,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  margin: EdgeInsetsDirectional.only(top: 15.h),
-                                  child: InkWell(
-                                    child: const CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 20,
-                                      child: Icon(Icons.edit),
-                                    ),
-                                    onTap: () {
-                                      provider.updateUserInfo();
-                                    },
                                   ),
-                                ),
-                              ],
-                            );
+                                  SizedBox(
+                                    width: 20.w,
+                                  ),
+                                  Text(
+                                    provider.loggedAppUser!.email!,
+                                    style: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              CustomProfileItem(
+                                "Name ",
+                                provider.loggedAppUser!.name!,
+                                provider.profileUserNameController,
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              CustomProfileItem(
+                                "Telephone ",
+                                provider.loggedAppUser!.phoneNumber!,
+                                provider.profileUserPhoneController,
+                              ),
+                            ],
+                          ),
+                          Container(
+                            margin: EdgeInsetsDirectional.only(top: 15.h),
+                            child: InkWell(
+                              child: const CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 20,
+                                child: Icon(Icons.edit),
+                              ),
+                              onTap: () {
+                                provider.updateUserInfo();
+                              },
+                            ),
+                          ),
+                        ],
+                      );
                     },
                   ),
                 ),

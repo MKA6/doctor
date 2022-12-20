@@ -43,15 +43,12 @@ class UserAppBar extends StatelessWidget {
                         end: 15.w,
                       ),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: provider.loggedAppUser!.imagUrl == null
-                          ? const Icon(
-                              Icons.camera_alt,
-                              color: Colors.white,
-                            )
+                      child: provider.loggedAppUser!.imagUrl == null 
+                          ? Image.asset('images/profile.png')
                           : CircleAvatar(
                               radius: 30.r,
                               child: Image.network(
-                                provider.loggedAppUser!.imagUrl!,
+                                provider.loggedAppUser!.imagUrl ?? 'images/profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
