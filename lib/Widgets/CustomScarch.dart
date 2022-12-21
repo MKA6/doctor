@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class CustomScarch extends StatelessWidget {
+class CustomScarch extends StatefulWidget {
+  @override
+  State<CustomScarch> createState() => _CustomScarchState();
+}
+
+class _CustomScarchState extends State<CustomScarch> {
+  String name = '';
   TextEditingController controller = TextEditingController();
 
   List<CategoryDoctor>? category;
@@ -22,7 +28,11 @@ class CustomScarch extends StatelessWidget {
                   )
                 : TextField(
                     controller: controller,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      setState(() {
+                        name = value;
+                      });
+                    },
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       hintText: 'Scarch',

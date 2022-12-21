@@ -140,7 +140,9 @@ class Profile extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      PersonalProfile(0), ///
+                      PersonalProfile(provider.doctorProfileIndex),
+
+                      ///
                       SizedBox(
                         height: 15.h,
                       ),
@@ -151,7 +153,9 @@ class Profile extends StatelessWidget {
                       SizedBox(
                         height: 15.h,
                       ),
-                      TextProfile(0), ///
+                      TextProfile(provider.doctorProfileIndex),
+
+                      ///
                     ],
                   ),
                 ),

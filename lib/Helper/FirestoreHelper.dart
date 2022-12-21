@@ -6,6 +6,7 @@ import 'package:doctor/admin/models/ActivitiesDoctor.dart';
 import 'package:doctor/admin/models/Category.dart';
 import 'package:doctor/admin/models/Produact.dart';
 import 'package:doctor/admin/models/UserDoctorCategory.dart';
+import 'package:flutter/cupertino.dart';
 
 class FirestoreHelper {
   FirestoreHelper._();
@@ -13,7 +14,7 @@ class FirestoreHelper {
   static FirestoreHelper firestoreHelper = FirestoreHelper._();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   CollectionReference<Map<String, dynamic>> doctorsCollection =
-      FirebaseFirestore.instance.collection('doctors');
+  FirebaseFirestore.instance.collection('doctors');
 
   createNewUser(AppUser appUser) async {
     firebaseFirestore.collection('users').doc(appUser.id).set(appUser.toMap());
@@ -21,7 +22,7 @@ class FirestoreHelper {
 
   Future<AppUser> getUserFromFirestore(String id) async {
     DocumentSnapshot<Map<String, dynamic>> document =
-        await firebaseFirestore.collection('users').doc(id).get();
+    await firebaseFirestore.collection('users').doc(id).get();
     Map<String, dynamic>? data = document.data();
     AppUser appUser = AppUser.forMap(data!);
     return appUser;
@@ -33,7 +34,8 @@ class FirestoreHelper {
         .doc(appUser.id)
         .update(appUser.toMap());
   }
-/// ///////////////////////////
+
+  /// ///////////////////////////
   RRRR(UserDoctorCategory userDoc) async {
     await firebaseFirestore
         .collection('categories')
@@ -45,14 +47,14 @@ class FirestoreHelper {
 
   Future<String> createNewCategory(CategoryDoctor category) async {
     DocumentReference<Map<String, dynamic>> document =
-        await firebaseFirestore.collection('categories').add(category.toMap());
+    await firebaseFirestore.collection('categories').add(category.toMap());
 
     return document.id;
   }
 
   Future<List<CategoryDoctor>> getAllCategory1() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firebaseFirestore.collection('categories').get();
+    await firebaseFirestore.collection('categories').get();
     List<CategoryDoctor> category = querySnapshot.docs.map((e) {
       CategoryDoctor cat = CategoryDoctor.fromMap(e.data());
       cat.id = e.id;
@@ -65,7 +67,7 @@ class FirestoreHelper {
 
   Future<List<UserDoctorCategory>> getAllUserCategory1() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firebaseFirestore.collection('UserDoctor').get();
+    await firebaseFirestore.collection('UserDoctor').get();
     List<UserDoctorCategory> category1 = querySnapshot.docs.map((e) {
       UserDoctorCategory cat = UserDoctorCategory.fromMap(e.data());
       cat.id = e.id;
@@ -77,7 +79,7 @@ class FirestoreHelper {
 
   Future<String> createNewUserCategory(UserDoctorCategory category) async {
     DocumentReference<Map<String, dynamic>> document =
-        await firebaseFirestore.collection('UserDoctor').add(category.toMap());
+    await firebaseFirestore.collection('UserDoctor').add(category.toMap());
     return document.id;
   }
 
@@ -88,6 +90,7 @@ class FirestoreHelper {
   deleteActivitiesDoctor(String id) async {
     await firebaseFirestore.collection('UserDoctor').doc(id).delete();
   }
+
   updateUserRating(CategoryDoctor categoryDoctor) async {
     await firebaseFirestore
         .collection('categories')
@@ -98,33 +101,34 @@ class FirestoreHelper {
   Future<String> AddNewActivitiesDoctor(
       ActivitiesDoctor activitiesDoctor) async {
     DocumentReference<Map<String, dynamic>> documentReference =
-        await firebaseFirestore
-            .collection('UserDoctor')
-            .doc(activitiesDoctor.catId)
-            .collection('Activities')
-            .add(activitiesDoctor.toMap());
+    await firebaseFirestore
+        .collection('UserDoctor')
+        .doc(activitiesDoctor.catId)
+        .collection('Activities')
+        .add(activitiesDoctor.toMap());
     return documentReference.id;
   }
-/**
-  Future<String> createNewCategoryDoctor(Produact produa) async {
-    DocumentReference<Map<String, dynamic>> documentReference =
-        await firebaseFirestore
-            .collection('UserDoctor')
-            .doc(produa.catId)
-            .collection('produacts')
-            .add(produa.toMap());
-    return documentReference.id;
-  }
-    */
+
+  /**
+      Future<String> createNewCategoryDoctor(Produact produa) async {
+      DocumentReference<Map<String, dynamic>> documentReference =
+      await firebaseFirestore
+      .collection('UserDoctor')
+      .doc(produa.catId)
+      .collection('produacts')
+      .add(produa.toMap());
+      return documentReference.id;
+      }
+   */
 
   Future<List<ActivitiesDoctor>?> getAllActivitiesDoctor(String catId) async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await firebaseFirestore
-              .collection('UserDoctor')
-              .doc(catId)
-              .collection('Activities')
-              .get();
+      await firebaseFirestore
+          .collection('UserDoctor')
+          .doc(catId)
+          .collection('Activities')
+          .get();
       return querySnapshot.docs.map((e) {
         ActivitiesDoctor activities = ActivitiesDoctor.fromMap(e.data());
         activities.id = e.id;
@@ -157,6 +161,19 @@ class FirestoreHelper {
     await firebaseFirestore.collection('UserDoctor').doc(id).delete();
     log(id);
   }
+
+  //  Scarch(String name) {
+  //   Stream<QuerySnapshot<Object?>>? scarch = StreamBuilder<QuerySnapshot>(
+  //       stream: (name != '' && name != null)
+  //           ? firebaseFirestore.collection(
+  //           'UserDoctor')
+  //           .where('searchKeywords', arrayContains: name)
+  //           .snapshots() :
+  //       firebaseFirestore.collection('UserDoctor').snapshots(),
+  //   ) as Stream<QuerySnapshot<Object?>>?;
+  //
+  //   return scarch;
+  // }
 
   updateCategory(ActivitiesDoctor activitiesDoctor) async {}
 }

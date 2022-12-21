@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor/AppRouter/AppRouter.dart';
 import 'package:doctor/Helper/FirestoreHelper.dart';
 import 'package:doctor/Helper/StoragHelper.dart';
+import 'package:doctor/Widgets/CustomScarch.dart';
 import 'package:doctor/admin/models/ActivitiesDoctor.dart';
 import 'package:doctor/admin/models/Category.dart';
 import 'package:doctor/admin/models/Produact.dart';
@@ -19,6 +21,9 @@ class AdminProvider extends ChangeNotifier {
   List<UserDoctorCategory>? userDoctorCategory;
   List<ActivitiesDoctor>? activitiesDoctor;
   List<Produact>? produact;
+
+
+  int doctorProfileIndex= 0;
 
   AdminProvider() {
    getAllUserCategory();
@@ -224,6 +229,8 @@ class AdminProvider extends ChangeNotifier {
       notifyListeners();
   }
 */
+  
+
   getAllActivitiesDoctor(String catId) async {
     // AppRouter.showLoaderDialog();
     activitiesDoctor =

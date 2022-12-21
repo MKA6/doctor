@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor/AppRouter/AppRouter.dart';
 import 'package:doctor/Helper/FirestoreHelper.dart';
 import 'package:doctor/Home/HomePopularDoctor.dart';
@@ -16,7 +17,13 @@ import 'package:provider/provider.dart';
 
 import '../Profile/search_widget_dialog.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -41,30 +48,45 @@ class Home extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     provider.categories == null
-                        ? const Center(
-                        child: CircularProgressIndicator(),
-                        )
-                        : Padding(
-                        padding: EdgeInsets.symmetric(
-                        vertical: 20.r,
-                        horizontal: 27.r,
-                        ),
-                        child: Container(
-                        width: 320.w,
-                        height: 40.h,
-                        padding: EdgeInsetsDirectional.all(
-                        10.r,
-                        ),
-                        decoration: BoxDecoration(
-                        borderRadius: BorderRadiusDirectional.all(
-                        Radius.circular(5.r),
-                        ),
-                        color: Colors.white,
-                        ),
-                        child: CustomScarch(),
-                        ),
-                        ),
+                   Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 20.r,
+                              horizontal: 27.r,
+                            ),
+                            child: Container(
+                              width: 320.w,
+                              height: 40.h,
+                              padding: EdgeInsetsDirectional.all(
+                                10.r,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadiusDirectional.all(
+                                  Radius.circular(5.r),
+                                ),
+                                color: Colors.white,
+                              ),
+                              child: TextField(
+                                onChanged: (value) {
+                                  setState(() {
+                                    name = value;
+                                  });
+                                },
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  hintText: 'Scarch',
+                                  hintStyle: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Color(0xff878C99),
+                                  ),
+                                  prefixIcon: const Icon(Icons.search),
+                                  border: InputBorder.none,
+                                ),
+                                style: const TextStyle(
+                                  color: Color(0xff878C99),
+                                ),
+                              ),
+                            ),
+                          ),
 
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -157,6 +179,7 @@ class Home extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                       onTap: () {
+                                        provider.doctorProfileIndex = index;
                                         // UserDoctorCategory u = provider.userDoctorCategory![index];
                                         provider.setBnbIndex(3);
                                         provider.getAllUserCategory();
